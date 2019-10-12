@@ -1,0 +1,17 @@
+<h1>Se connecter</h1>
+{% if error %}
+<p><strong>Utilisateur inexistant ou mauvais de mot de
+passe.</strong></p>
+{% endif %}
+{% if user.is_authenticated %}
+Vous êtes connecté, {{ user.username }} !
+{% else %}
+<form action='' method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="login">
+</form>
+{%endif%}
+{% if user.is_authenticated %}
+<a href= {% url "deconnexion" %}> deconnexion </a>
+{% endif %}
